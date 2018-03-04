@@ -1,0 +1,8 @@
+{
+	alerts	{
+		alertDescriptionText
+		route	{
+			gtfsId
+			}
+		}
+}
