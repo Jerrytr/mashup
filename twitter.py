@@ -1,9 +1,12 @@
 import tweepy
+import os
 
-consumer_key = open('keys/consumer_key','r').readline().rstrip()
-consumer_secret = open('keys/consumer_secret','r').readline().rstrip()
-access_token = open('keys/access_token','r').readline().rstrip()
-access_token_secret = open('keys/access_token_secret','r').readline().rstrip()
+workingDirectory = os.path.dirname(os.path.abspath(__file__)) + '/'
+
+consumer_key = open(workingDirectory + 'keys/consumer_key','r').readline().rstrip()
+consumer_secret = open(workingDirectory + 'keys/consumer_secret','r').readline().rstrip()
+access_token = open(workingDirectory + 'keys/access_token','r').readline().rstrip()
+access_token_secret = open(workingDirectory + 'keys/access_token_secret','r').readline().rstrip()
 
 def OAuth(consumer_key, consumer_secret, access_token, access_token_secret):
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)

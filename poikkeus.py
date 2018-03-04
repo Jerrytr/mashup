@@ -1,10 +1,12 @@
+import os
 import requests
 import json
 from pprint import pprint
 from twitter import tweet
 
+workingDirectory = os.path.dirname(os.path.abspath(__file__)) + '/'
 url = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql"
-payload = open('request.json')
+payload = open(workingDirectory + 'request.json')
 headers = {'Content-Type': 'application/graphql'}
 r = requests.post(url=url, data=payload, headers=headers)
 jsonstuff = r.content
