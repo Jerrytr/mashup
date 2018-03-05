@@ -1,8 +1,8 @@
 {
-	alerts	{
-		alertDescriptionText
-		route	{
-			gtfsId
+	"alerts": {
+		"alertDescriptionText":"",
+		"route": {
+			"gtfsId":""
 			}
 		}
 }
