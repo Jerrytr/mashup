@@ -18,15 +18,18 @@ result = json.loads(jsonResponse)
 # mystuff = data['data']['alerts'][0]['route']['gtfsId']
 
 disruptions = result['data']['alerts']
-for i in range(0, len(disruptions)):
-	routeID = disruptions[i]['route']['gtfsId']
-	disruptDesc = disruptions[i]['alertDescriptionText']
-	print(routeID)
-	if (routeID in metrolines):
-		print('metro is broken again')
-		tweet('@Jers1_ ' + disruptDesc[0:132])
-	else:
-		print('metro works')
+if (len(disruptions) == 0):
+	print('no disruptions whatsoever')
+else:
+	for i in range(0, len(disruptions)):
+		routeID = disruptions[i]['route']['gtfsId']
+		disruptDesc = disruptions[i]['alertDescriptionText']
+		print(routeID)
+		if (routeID in metrolines):
+			print('metro is broken again')
+			tweet('@Jers1_ ' + disruptDesc[0:132])
+		else:
+			print('metro works')
 # routeID = result['data']['alerts'][0]['route']['gtfsId']
 # disruptDesc = result['data']['alerts'][0]['alertDescriptionText']
 
