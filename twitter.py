@@ -22,4 +22,8 @@ api = apiAuth(auth)
 
 def tweet(stuff):
 	api.update_status(stuff)
+
+def getMentions():
+	return api.search('@mashbot001')
+	
 # api.update_status('multi-functional')
