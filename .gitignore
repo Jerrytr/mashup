@@ -1,4 +1,5 @@
 keys/
+mariadb/
 __pycache__/
 *.pyc
 .vscode
