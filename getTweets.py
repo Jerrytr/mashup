@@ -55,10 +55,13 @@ for mention in mentions:
 		userToSubscribe = mention.user.screen_name
 		print(userToSubscribe)
 		# Call a subscribe function
-	if 'unsubscribe' in tweet:
+	if 'unsubscribe HSL:' in tweet:
 		lineToUnsubscribe = tweet.split('unsubscribe ',1)[1]
 		userToUnsubscribe = mention.user.screen_name
 		# Call an unsubscribe function
+	if 'unsubscribe all' in tweet:
+		userToUnsubscribe = mention.user.screen_name
+		# Call the unsubcribe all function
 
 # We parse the list of Tweet ID's to save the ID of the newest Tweet
 # This chould maybe be refactored to the mentions for loop
