@@ -20,7 +20,7 @@ from database import * # Does this work?
 
 workingDirectory = os.path.dirname(os.path.abspath(__file__)) + '/'
 
-# The ID of the latest Tweet the bot has read in stored in a file
+# The ID of the latest Tweet the bot has read is stored in a file
 # Here we check whether the file exists
 latestTweetIdFileExists = Path(workingDirectory + 'latestTweetId')
 
