@@ -25,5 +25,3 @@ def tweet(stuff):
 
 def getMentions(latestId):
 	return api.search(q='@mashbot001', since_id=latestId)
-	
-# api.update_status('multi-functional')
