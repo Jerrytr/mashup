@@ -1,7 +1,22 @@
+# This script is responsible for getting the Tweets from the users/ subscribers
+# The bot currently supports four commands:
+#
+# 1. "Subscribe <HSL_route_id>" (example: Subscribe HSL:1023)
+# 2. "Unsubscribe <HSL_route_id>" (example: Unsubscribe HSL:1023)
+# 3. "Unsubscribe all" (unsubscribes from all routes)
+# 4. "Get subscriptions" (get all routes the user has subscribed to)
+#
+# The script reads incoming tweets and parses them according to the commands
+# It will call appropriate functions from database.py, since user data is stored in the DB
+# It also calls a Tweet function to inform users that their action has been completed
+# Idea: maybe have an option to NOT get a confirmation?
+
+
 from twitter import getMentions
 from pprint import pprint
 import os
 from pathlib import Path
+from database import * # Does this work?
 
 workingDirectory = os.path.dirname(os.path.abspath(__file__)) + '/'
 
