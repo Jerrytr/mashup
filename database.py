@@ -18,6 +18,8 @@ pw = open(workingDirectory + 'mariadb/mashup_write','r').readline().rstrip()
 
 # Open a connection to the database
 # Enable autocommit to make changes instant
+# BTW all this needs to be a function that gets called by each of the subscription functions
+# So maybe do that...
 db = pymysql.connect('localhost','mashup_write',pw,'mashup_db',autocommit=True)
 
 # Prepare a cursor object

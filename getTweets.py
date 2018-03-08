@@ -39,29 +39,37 @@ idList = []
 mentions = getMentions(latestTweetId)
 
 for mention in mentions:
-	# print(mention.id)
 	idList.append(mention.id)
-	# print(mention.text)
 	tweet = mention.text
 
 	# The keyword for subscribing to new HSL lines is 'subscribe'
 	# subscribe is a substring of unsubscribe, so we need to rule that out
 	# Could this be done with if elif?
 	if 'subscribe' in tweet and 'unsubscribe' not in tweet:
-		# After the keyword comes the HSL line, so we split it from the Tweet string
+
+		# The HSL line number comes after the keyword, so we split it from the Tweet string
 		lineToSubscribe = tweet.split('subscribe ',1)[1]
 		print(lineToSubscribe)
+
 		# The user who sent the Tweet, ie. the user who wants to subscribe
 		userToSubscribe = mention.user.screen_name
 		print(userToSubscribe)
-		# Call a subscribe function
+
+		# Call the subscribe function
+		addSubscription(userToSubscribe, lineToSubscribe)
+
 	if 'unsubscribe HSL:' in tweet:
 		lineToUnsubscribe = tweet.split('unsubscribe ',1)[1]
 		userToUnsubscribe = mention.user.screen_name
-		# Call an unsubscribe function
+
+		# Call the unsubscribe function
+		deleteSubscription(userToUnsubscribe, lineToUnsubscribe)
+
 	if 'unsubscribe all' in tweet:
 		userToUnsubscribe = mention.user.screen_name
+
 		# Call the unsubcribe all function
+		deleteAllSubscriptions(userToUnsubscribe)
 
 # We parse the list of Tweet ID's to save the ID of the newest Tweet
 # This chould maybe be refactored to the mentions for loop
