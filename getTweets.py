@@ -55,21 +55,25 @@ for mention in mentions:
 		userToSubscribe = mention.user.screen_name
 		print(userToSubscribe)
 
-		# Call the subscribe function
+		# Call the subscribe function from database.py
 		addSubscription(userToSubscribe, lineToSubscribe)
 
 	if 'unsubscribe HSL:' in tweet:
 		lineToUnsubscribe = tweet.split('unsubscribe ',1)[1]
 		userToUnsubscribe = mention.user.screen_name
 
-		# Call the unsubscribe function
+		# Call the unsubscribe function from database.py
 		deleteSubscription(userToUnsubscribe, lineToUnsubscribe)
 
 	if 'unsubscribe all' in tweet:
 		userToUnsubscribe = mention.user.screen_name
 
-		# Call the unsubcribe all function
+		# Call the unsubcribe all function from database.py
 		deleteAllSubscriptions(userToUnsubscribe)
+
+	if 'get subscriptions' in tweet:
+		userToGetSubscriptions = mention.user.screen_name
+		getSubscriptions(userToGetSubscriptions)
 
 # We parse the list of Tweet ID's to save the ID of the newest Tweet
 # This chould maybe be refactored to the mentions for loop
