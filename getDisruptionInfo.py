@@ -2,7 +2,7 @@ import os
 import requests
 import json
 from pprint import pprint
-from twitter import tweet
+from twitter import sendTweet
 
 metrolines = ['HSL:31M1', 'HSL:31M1B', 'HSL:31M2', 'HSL:31M2B']
 
@@ -27,7 +27,7 @@ else:
 		print(routeID)
 		if (routeID in metrolines):
 			print('metro is broken again')
-			tweet('@Jers1_ ' + disruptDesc[0:132])
+			sendTweet('@Jers1_ ' + disruptDesc[0:132])
 		else:
 			print('metro works')
 # routeID = result['data']['alerts'][0]['route']['gtfsId']

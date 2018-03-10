@@ -13,6 +13,7 @@
 
 
 from twitter import getMentions
+from twitter import sendTweet
 from pprint import pprint
 import os
 from pathlib import Path
@@ -72,8 +73,14 @@ for mention in mentions:
 		deleteAllSubscriptions(userToUnsubscribe)
 
 	if 'get subscriptions' in tweet:
+		subscriptions = []
 		userToGetSubscriptions = mention.user.screen_name
-		getSubscriptions(userToGetSubscriptions)
+		rawSubscriptions = getSubscriptions(userToGetSubscriptions)
+		for row in rawSubscriptions:
+			subscriptions.append(row)
+		tweetPhrase = '@'+userToGetSubscriptions+', you have subscribed to '+subscriptions
+		print(tweetPhrase)
+		sendTweet(tweetPhrase)
 
 # We parse the list of Tweet ID's to save the ID of the newest Tweet
 # This chould maybe be refactored to the mentions for loop

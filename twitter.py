@@ -20,7 +20,7 @@ def apiAuth(auth):
 auth = OAuth(consumer_key, consumer_secret, access_token, access_token_secret)
 api = apiAuth(auth)
 
-def tweet(stuff):
+def sendTweet(stuff):
 	api.update_status(stuff)
 
 def getMentions(latestId):
