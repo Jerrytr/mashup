@@ -78,7 +78,9 @@ for mention in mentions:
 		rawSubscriptions = getSubscriptions(userToGetSubscriptions)
 		for row in rawSubscriptions:
 			subscriptions.append(row)
-		tweetPhrase = '@'+userToGetSubscriptions+', you have subscribed to '+subscriptions
+		tweetPhrase = '@'+userToGetSubscriptions+', you have subscribed to '
+		for i in subscriptions:
+			tweetPhrase += i+' '
 		print(tweetPhrase)
 		sendTweet(tweetPhrase)
 
