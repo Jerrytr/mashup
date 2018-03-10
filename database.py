@@ -41,6 +41,7 @@ def checkSubscription(username, HSLRoute):
 	SQLQuery = 'SELECT * FROM Subscriptions WHERE Twitter_username="'+username+'" AND HSL_route="'+HSLRoute+'";'
 	cursor.execute(SQLQuery)
 	cursor.fetchall()
+	print(cursor.rowcount)
 	if cursor.rowcount == 0:
 		return False
 	else:
@@ -50,7 +51,7 @@ def checkSubscription(username, HSLRoute):
 # Add a certain user as an subscriber to a certain HSL route
 def addSubscription(username, HSLRoute):
 	# Only subscribe if the user hasn't subscribed to that HSL route yet
-	if checkSubscription(username, HSLRoute):
+	if not checkSubscription(username, HSLRoute):
 		SQLQuery = 'INSERT INTO Subscriptions(Twitter_username, HSL_route) VALUES("'+username+'", "'+HSLRoute+'");'
 		cursor.execute(SQLQuery)
 	return 

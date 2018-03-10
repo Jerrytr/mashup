@@ -50,13 +50,12 @@ for mention in mentions:
 
 		# The HSL line number comes after the keyword, so we split it from the Tweet string
 		lineToSubscribe = tweet.split('subscribe ',1)[1]
-		print(lineToSubscribe)
 
 		# The user who sent the Tweet, ie. the user who wants to subscribe
 		userToSubscribe = mention.user.screen_name
-		print(userToSubscribe)
 
 		# Call the subscribe function from database.py
+		print(userToSubscribe+' wants to subscribe to '+lineToSubscribe)
 		addSubscription(userToSubscribe, lineToSubscribe)
 
 	if 'unsubscribe HSL:' in tweet:
@@ -77,7 +76,8 @@ for mention in mentions:
 		userToGetSubscriptions = mention.user.screen_name
 		rawSubscriptions = getSubscriptions(userToGetSubscriptions)
 		for row in rawSubscriptions:
-			subscriptions.append(row)
+			subscriptions.append(row[0])
+		print(subscriptions)
 		tweetPhrase = '@'+userToGetSubscriptions+', you have subscribed to '
 		for i in subscriptions:
 			tweetPhrase += i+' '
