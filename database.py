@@ -58,8 +58,10 @@ def addSubscription(username, HSLRoute):
 
 # Delete a certain user's subscription of a certain HSL route
 def deleteSubscription(username, HSLRoute):
-	SQLQuery = 'DELETE FROM Subscriptions WHERE Twitter_username="'+username+'" AND HSL_route="'+HSLRoute+'";'
-	cursor.execute(SQLQuery)
+	# Don't bother trying to delete stuff that doesn't exist
+	if checkSubscription(username, HSLRoute):
+		SQLQuery = 'DELETE FROM Subscriptions WHERE Twitter_username="'+username+'" AND HSL_route="'+HSLRoute+'";'
+		cursor.execute(SQLQuery)
 	return
 
 # Delete a certain user's all subscriptions
