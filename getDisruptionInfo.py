@@ -3,6 +3,7 @@ import requests
 import json
 from pprint import pprint
 from twitter import sendTweet
+from database import *
 
 metrolines = ['HSL:31M1', 'HSL:31M1B', 'HSL:31M2', 'HSL:31M2B']
 
@@ -25,6 +26,19 @@ else:
 		routeID = disruptions[i]['route']['gtfsId']
 		disruptDesc = disruptions[i]['alertDescriptionText']
 		print(routeID)
+
+		# Get the users we need to notify about this line
+		usersToNotify = []
+		rawUsersToNotify = getSubscribers(routeID)
+		for i in rawUsersToNotify:
+			usersToNotify.append(i[0])
+		
+		# Notify the users
+		for i in usersToNotify:
+			tweetPhrase = '@'+i+disruptDesc
+			sendTweet(tweetPhrase)
+
+		# Legacy code
 		if (routeID in metrolines):
 			print('metro is broken again')
 			sendTweet('@Jers1_ ' + disruptDesc[0:132])
