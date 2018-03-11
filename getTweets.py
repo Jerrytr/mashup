@@ -17,7 +17,7 @@ from twitter import sendTweet
 from pprint import pprint
 import os
 from pathlib import Path
-from database import * # Does this work?
+from database import *
 
 workingDirectory = os.path.dirname(os.path.abspath(__file__)) + '/'
 
@@ -57,6 +57,8 @@ for mention in mentions:
 		# Call the subscribe function from database.py
 		print(userToSubscribe+' wants to subscribe to '+lineToSubscribe)
 		addSubscription(userToSubscribe, lineToSubscribe)
+		
+		# Send out a tweet to let the user know we didn't ignore them :)
 		tweetPhrase = '@'+userToSubscribe+', you have subscribed to '+lineToSubscribe
 		sendTweet(tweetPhrase)
 
@@ -80,6 +82,8 @@ for mention in mentions:
 	if 'get subscriptions' in tweet:
 		subscriptions = []
 		userToGetSubscriptions = mention.user.screen_name
+
+		# Call the getSubscriptions function from database.py
 		rawSubscriptions = getSubscriptions(userToGetSubscriptions)
 		for row in rawSubscriptions:
 			subscriptions.append(row[0])
