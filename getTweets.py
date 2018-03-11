@@ -100,6 +100,6 @@ if len(idList) != 0:
 	idList.sort(reverse=True)
 	print(idList[0])
 
-	file = open('latestTweetId','w')
+	file = open(workingDirectory+'latestTweetId','w')
 	file.write(str(idList[0]))
 	file.close()
