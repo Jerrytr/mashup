@@ -57,6 +57,8 @@ for mention in mentions:
 		# Call the subscribe function from database.py
 		print(userToSubscribe+' wants to subscribe to '+lineToSubscribe)
 		addSubscription(userToSubscribe, lineToSubscribe)
+		tweetPhrase = '@'+userToSubscribe+', you have subscribed to '+lineToSubscribe
+		sendTweet(tweetPhrase)
 
 	if 'unsubscribe HSL:' in tweet:
 		lineToUnsubscribe = tweet.split('unsubscribe ',1)[1]
@@ -64,12 +66,16 @@ for mention in mentions:
 
 		# Call the unsubscribe function from database.py
 		deleteSubscription(userToUnsubscribe, lineToUnsubscribe)
+		tweetPhrase = '@'+userToUnsubscribe+', you have unsubscribed from '+lineToUnsubscribe
+		sendTweet(tweetPhrase)
 
 	if 'unsubscribe all' in tweet:
 		userToUnsubscribe = mention.user.screen_name
 
 		# Call the unsubcribe all function from database.py
 		deleteAllSubscriptions(userToUnsubscribe)
+		tweetPhrase = '@'+userToUnsubscribe+', you have unsubscribed from all HSL lines.'
+		sendTweet(tweetPhrase)
 
 	if 'get subscriptions' in tweet:
 		subscriptions = []
@@ -78,7 +84,7 @@ for mention in mentions:
 		for row in rawSubscriptions:
 			subscriptions.append(row[0])
 		print(subscriptions)
-		tweetPhrase = '@'+userToGetSubscriptions+', you have subscribed to '
+		tweetPhrase = '@'+userToGetSubscriptions+', you are subscribed to '
 		for i in subscriptions:
 			tweetPhrase += i+' '
 		print(tweetPhrase)
