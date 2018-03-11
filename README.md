@@ -9,3 +9,5 @@ The different files:
 - twitter.py contains functions for sending and checking for Tweets
 - getDisruptionInfo.py queries the HSL API for disruptions and notifies subscribers
 - getTweets.py queries the Twitter API for new subscribers and unsubscribers and sends confirmation Tweets
+
+You should put getTweets.py and getDisriptionInfo.py in crontab with whatever interval you see fit
