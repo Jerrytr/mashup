@@ -35,10 +35,11 @@ else:
 		rawUsersToNotify = getSubscribers(routeID)
 		for i in rawUsersToNotify:
 			usersToNotify.append(i[0])
-		
+
 		# Notify the users
 		for i in usersToNotify:
-			tweetPhrase = '@'+i+disruptDesc
+			tweetPhrase = '@'+i+' '+disruptDesc
+			print(tweetPhrase)
 			sendTweet(tweetPhrase)
 
 		# Legacy code
@@ -50,3 +51,4 @@ else:
 # routeID = result['data']['alerts'][0]['route']['gtfsId']
 # disruptDesc = result['data']['alerts'][0]['alertDescriptionText']
 
+		print(usersToNotify)
